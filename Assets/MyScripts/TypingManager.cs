@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using My_Scripts;
 using TMPro;
 using UnityEngine;
 
@@ -31,9 +32,8 @@ public class TypingManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textJapanese; // ここに日本語表示のTextMeshProをアタッチする。
     [SerializeField] private TextMeshProUGUI textRoman; // ここにローマ字表示のTextMeshProをアタッチする。
     
-    [SerializeField] private RectTransform left; // ここに日本語表示のTextMeshProをアタッチする。
+    [SerializeField] private RectTransform left; //。
     [SerializeField] private RectTransform right;
-
     private readonly List<char> _roman = new List<char>();
     private bool _isWindows; //追加する
     private bool _isMac; //追加する
@@ -115,14 +115,14 @@ public class TypingManager : MonoBehaviour
                     if (_roman[_romanIndex] == '@') // 「@」がタイピングの終わりの判定となる。
                     {
                         score++;
-                        on.otoman(3);
+                        on.otoman(6);
                         StartCoroutine(DoorsClose());
                         InitializeQuestion();
                     }
                     else
                     {
                         textRoman.text = GenerateTextRoman();
-                        @on.otoman(6);
+                        on.otoman(4);
                     }
                     break;
                 case 2:
@@ -133,7 +133,7 @@ public class TypingManager : MonoBehaviour
                     score = 1;
                     StartCoroutine(DoorsBadClose());
                     InitializeQuestion();
-                    on.otoman(4);
+                    on.otoman(3);
                     // ミスタイプ時
                     break;
             }
