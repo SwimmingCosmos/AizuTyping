@@ -41,7 +41,7 @@ public class OnOff : MonoBehaviour  // 物を隠したり表示したりする
 
     public void allMusic()
     {
-        meoto.volume =*ss.value;
+        meoto.volume =ss.value;
         cat.volume = 0.1f*ss.value;
         over.volume = ss.value;
     }
