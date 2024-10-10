@@ -5,18 +5,20 @@ using DG.Tweening;
 using My_Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class Question
 {
     public string japanese;
     public string roman;
+    public Sprite background;
 }
 
 public class TypingManager : MonoBehaviour
 {
-    public int score  = 1;
-    public float countTime = 60.0f;
+    public int score  = 0;
+    public float countTime = 0.0f;
     [SerializeField] private Question[] questions;
     
     [SerializeField] private TextMeshProUGUI textScore; //スコア集計
@@ -28,7 +30,8 @@ public class TypingManager : MonoBehaviour
     [SerializeField] private Sprite yoi;
 
     [SerializeField] private OnOff on;
-    
+    [SerializeField] private Sprite _noImage;
+    [SerializeField] private Image BackScreen; // ここにそれぞれのイメージ画像をアタッチする。
     [SerializeField] private TextMeshProUGUI textJapanese; // ここに日本語表示のTextMeshProをアタッチする。
     [SerializeField] private TextMeshProUGUI textRoman; // ここにローマ字表示のTextMeshProをアタッチする。
     
@@ -57,14 +60,13 @@ public class TypingManager : MonoBehaviour
 
     private void Update()//カウント測る
     {
-        //カウントダウンを表示してるはず
+        //カウントアップを表示、15点以上で終了
         textTime.text = String.Format("{0:00.00}", countTime);
-        //カウントダウン
-        countTime -= Time.deltaTime;
-        if (countTime <= 0.0f)
+        //カウントアップ
+        countTime += Time.deltaTime;
+        if (score >= 15)
         {
             StartCoroutine(DoorsClose());
-            countTime = 0.0f;
             on.otoman(5);
             End();
         }
@@ -77,11 +79,18 @@ public class TypingManager : MonoBehaviour
     
     public IEnumerator DoorsClose()
     {
-        left.DOLocalMoveX(-238, 0.5f);
-        right.DOLocalMoveX(232, 0.5f);
+        left.DOLocalMoveX(-254, 0.5f);
+        right.DOLocalMoveX(254, 0.5f);
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(DoorsOpen());
     }
+
+    public void EarlyClose()
+    {
+        left.DOLocalMoveX(-254, 0.5f);
+        right.DOLocalMoveX(254, 0.5f);
+    }
+    
     public IEnumerator DoorsOpen()
     {
         
@@ -89,7 +98,7 @@ public class TypingManager : MonoBehaviour
         right.DOLocalMoveX(642, 0.5f);
         on.otoman(2);
         yield return new WaitForSeconds(0.6f);
-        le.sprite = yoi;
+        le.sprite = oni;
         ri.sprite = yoi;
         
     }
@@ -130,9 +139,9 @@ public class TypingManager : MonoBehaviour
                     {
                         break;
                     }
-                    score = 1;
-                    StartCoroutine(DoorsBadClose());
-                    InitializeQuestion();
+                    //score = 1;
+                    //StartCoroutine(DoorsBadClose());
+                    //InitializeQuestion();
                     on.otoman(3);
                     // ミスタイプ時
                     break;
@@ -145,6 +154,17 @@ public class TypingManager : MonoBehaviour
         
         
         Question question = questions[UnityEngine.Random.Range(0, questions.Length)];
+
+        if (question.background != null)
+        {
+            BackScreen.sprite = question.background;
+        }
+        else
+        {
+            BackScreen.sprite = _noImage;
+        }
+        
+        
 
         _roman.Clear();
 
@@ -161,7 +181,7 @@ public class TypingManager : MonoBehaviour
 
         textJapanese.text = question.japanese;
         textRoman.text = GenerateTextRoman();
-        textScore.text = score+"段";
+        textScore.text = "残り"+(15-score).ToString()+"個";
     }
 
     string GenerateTextRoman()

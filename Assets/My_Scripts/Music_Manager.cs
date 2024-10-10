@@ -97,6 +97,9 @@ namespace My_Scripts
                     tmp++;
                 }
             }
+            if(bgms[2] == true  && number != 2){bgms[2].Stop();}//強硬策
+            if(bgms[1] == true  && number != 1){bgms[1].Stop();}//強硬策
+            if(bgms[0] == true  && number != 0){bgms[0].Stop();}//強硬策
             bgms[number].volume = basicses[number];
             
         }

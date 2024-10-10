@@ -80,44 +80,24 @@ public class OnOff : MonoBehaviour  // 物を隠したり表示したりする
             i.gameObject.SetActive(true);
         }*/
 
-        xxdan.text = tyMg.score+"段";
-        UnityroomApiClient.Instance.SendScore(1, tyMg.score, ScoreboardWriteMode.HighScoreDesc);
+        xxdan.text = tyMg.countTime+"秒";
+        UnityroomApiClient.Instance.SendScore(1, tyMg.countTime, ScoreboardWriteMode.HighScoreAsc);
         if (tyMg.score <= 1)
         {
-            dondo.text = "教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育市形市形市形市形市形市形市形市形市形教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育";
-        }
-        else if (tyMg.score <= 4)
-        {
-            dondo.text = "Never give Up";
-        }
-        else if (tyMg.score <= 8)
-        {
-            dondo.text = "頑張ったね";
-        }
-        else if (tyMg.score <= 12)
-        {
-            dondo.text = "お疲れさま";
-        }
-        else if (tyMg.score <= 15)
-        {
-            dondo.text = "たくましいですね";
-        }
-        else if (tyMg.score <= 19)
-        {
-            dondo.text = "すごい！つぎは20段だ！";
+            dondo.text = "Thank you for playing my game!";
         }
         else
         {
             good.SetActive(true);
         }
-        
+        tyMg.countTime = 0.0f;
         StartCoroutine(Moves());
     }
 
     public void Retry()
     {
-        music.BgmExport(1);//meoto
-        StartCoroutine(tyMg.DoorsClose());
+        music.BgmExport(0);//meoto
+        tyMg.EarlyClose();
         foreach (GameObject i in games)//最後の部分全部消す
         {
             i.gameObject.SetActive(false);
