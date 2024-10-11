@@ -80,7 +80,7 @@ public class OnOff : MonoBehaviour  // 物を隠したり表示したりする
             i.gameObject.SetActive(true);
         }*/
 
-        xxdan.text = tyMg.countTime+"秒";
+        xxdan.text = tyMg.countTime.ToString("F2")+"秒";
         UnityroomApiClient.Instance.SendScore(1, tyMg.countTime, ScoreboardWriteMode.HighScoreAsc);
         if (tyMg.score <= 1)
         {
@@ -110,8 +110,8 @@ public class OnOff : MonoBehaviour  // 物を隠したり表示したりする
         {
             i.gameObject.SetActive(true);
         }
-        tyMg.countTime = 60.0f;
-        tyMg.score = 1;
+        tyMg.countTime = 0.0f;
+        tyMg.score = 0;
         tyMg.InitializeQuestion();
     }
     

@@ -134,7 +134,7 @@ public class TypingManager : MonoBehaviour
                         on.otoman(4);
                     }
                     break;
-                case 2:
+                case 2://ミスったとき
                     if (Input.GetKey(KeyCode.Space))
                     {
                         break;
@@ -142,6 +142,7 @@ public class TypingManager : MonoBehaviour
                     //score = 1;
                     //StartCoroutine(DoorsBadClose());
                     //InitializeQuestion();
+                    textRoman.text = GenerateFailTextRoman();
                     on.otoman(3);
                     // ミスタイプ時
                     break;
@@ -154,15 +155,15 @@ public class TypingManager : MonoBehaviour
         
         
         Question question = questions[UnityEngine.Random.Range(0, questions.Length)];
-
-        if (question.background != null)
-        {
+        Debug.Log(question.background);
+       // if (question.background != null)
+        //{
             BackScreen.sprite = question.background;
-        }
-        else
-        {
-            BackScreen.sprite = _noImage;
-        }
+       // }
+        //else
+       // {
+         //   BackScreen.sprite = _noImage;
+        //}
         
         
 
@@ -182,6 +183,32 @@ public class TypingManager : MonoBehaviour
         textJapanese.text = question.japanese;
         textRoman.text = GenerateTextRoman();
         textScore.text = "残り"+(15-score).ToString()+"個";
+    }
+    string GenerateFailTextRoman()
+    {
+        string text = "<style=typed>";
+        for (int i = 0; i < _roman.Count; i++)
+        {
+            if (_roman[i] == '@')
+            {
+                break;
+            }
+            if (i == _romanIndex)
+            {
+                text += "</style><style=Failed>";
+            }
+
+            if (i == _romanIndex+1)
+            {
+                text += "</style><style=untyped>";
+            }
+
+            text += _roman[i];
+        }
+
+        text += "</style>";
+
+        return text;
     }
 
     string GenerateTextRoman()
