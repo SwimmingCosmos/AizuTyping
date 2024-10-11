@@ -96,6 +96,7 @@ public class OnOff : MonoBehaviour  // 物を隠したり表示したりする
 
     public void Retry()
     {
+        int a= 0;
         music.BgmExport(0);//meoto
         tyMg.EarlyClose();
         foreach (GameObject i in games)//最後の部分全部消す
@@ -109,6 +110,11 @@ public class OnOff : MonoBehaviour  // 物を隠したり表示したりする
         foreach (GameObject i in titles)//最後の部分全部戻す
         {
             i.gameObject.SetActive(true);
+            a++;
+            if (a == 4)
+            {
+                i.gameObject.SetActive(false); 
+            }
         }
         tyMg.countTime = 0.0f;
         tyMg.score = 0;
