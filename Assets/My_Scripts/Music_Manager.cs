@@ -68,6 +68,7 @@ namespace My_Scripts
             foreach (var bgm in bVolume)
             {
                 basicbgms[i] = bgmsliSlider.value * bgm * master.value;
+                Debug.Log("bgm:"+bgm);
                 bgms[i].volume = basicbgms[i];
                 i++;
             }
@@ -97,7 +98,11 @@ namespace My_Scripts
                     tmp++;
                 }
             }
-            bgms[number].volume = basicses[number];
+            
+            if(bgms[2] == true  && number != 2){bgms[2].Stop();}//強硬策
+            if(bgms[1] == true  && number != 1){bgms[1].Stop();}//強硬策
+            if(bgms[0] == true  && number != 0){bgms[0].Stop();}//強硬策
+            bgms[number].volume = basicbgms[number];
             
         }
         public void SeExport(int number)//SE音源が変わる時
