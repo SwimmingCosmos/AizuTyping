@@ -1504,9 +1504,6 @@ MonoBehaviour:
   - japanese: "\u4F1A\u6D25\u82E5\u677E"
     roman: aiduwakamatu
     background: {fileID: 21300000, guid: 09618ddf6bccf4598b0e253bbaf29cb5, type: 3}
-  - japanese: "\u6F2B\u753B\u7814\u7A76\u90E8"
-    roman: 'mangakenkyuubu '
-    background: {fileID: 21300000, guid: 8e1e625e9b9814efea090d8a91e58723, type: 3}
   - japanese: DMC
     roman: dmc
     background: {fileID: 21300000, guid: 81c0c9cb0fc1a471c8c41061efd54fe2, type: 3}
@@ -1698,7 +1695,7 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: 57f3f4295cf69c5488565f0c5a9bf4af, type: 3}
   - japanese: "\u81EA\u7136\u79D1\u5B66"
     roman: sizenkagaku
-    background: {fileID: 21300000, guid: 57f3f4295cf69c5488565f0c5a9bf4af, type: 3}
+    background: {fileID: 21300000, guid: ce34ae082573c4902b03424a8cde20b7, type: 3}
   - japanese: "\u30EF\u30A4\u30E4\u30EC\u30B9\u30CD\u30C3\u30C8\u30EF\u30FC\u30AF"
     roman: waiyaresunettowa-ku
     background: {fileID: 21300000, guid: 502b817c72fac478787f439f80a24b95, type: 3}
@@ -4932,7 +4929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.136993, y: 41.75}
+  m_AnchoredPosition: {x: 22.137024, y: 41.75}
   m_SizeDelta: {x: -148.443, y: -83.49896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953247846
